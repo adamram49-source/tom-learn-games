@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>האתר של תום</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #041042;
+            --text-title: #c7cb21;
+            --card-bg: #1dd873;
+            --card-text: #b41d08;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Assistant', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: white;
+        }
+
+        /* אפקט רקע זוהר */
+        .glow-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vh;
+            background: radial-gradient(circle, rgba(199, 203, 33, 0.05) 0%, rgba(4, 16, 66, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* כותרת עם אפקט */
+        .main-title {
+            color: var(--text-title);
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            text-shadow: 0 0 20px rgba(199, 203, 33, 0.4);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .cards-container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* עיצוב הכרטיסיות */
+        .study-card {
+            background-color: var(--card-bg);
+            width: 280px;
+            height: 380px;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.2);
+            position: relative;
+            cursor: pointer;
+            border: 4px solid transparent;
+        }
+
+        .study-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(29, 216, 115, 0.3);
+            border-color: var(--text-title);
+        }
+
+        .study-card:active {
+            transform: scale(0.95);
+        }
+
+        /* טקסט בתוך הכרטיסייה */
+        .card-text {
+            color: var(--card-text);
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1);
+            transition: letter-spacing 0.3s ease;
+        }
+
+        .study-card:hover .card-text {
+            letter-spacing: 2px;
+        }
+
+        /* אנימציות */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* קישוטים נוספים */
+        .sparkle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            opacity: 0.7;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="glow-bg"></div>
+
+    <h1 class="main-title">ברוך הבא תום, מה תלמד היום🤔?</h1>
+
+    <div class="cards-container">
+        <!-- כרטיסיית אנגלית -->
+        <a href="https://adamram49-source.github.io/tom-english-game/" class="study-card floating" style="animation-delay: 0s;">
+            <div class="sparkle">✨</div>
+            <div class="card-text">אנגלית ✨</div>
+        </a>
+
+        <!-- כרטיסיית מתמטיקה -->
+        <a href="https://adamram49-source.github.io/tom-math-game/" class="study-card floating" style="animation-delay: 0.5s;">
+            <div class="sparkle">🔢</div>
+            <div class="card-text">מתמטיקה 🔢</div>
+        </a>
+    </div>
+
+    <script>
+        // הוספת אפקט של תנועת עכבר עדינה לרקע
+        document.addEventListener('mousemove', (e) => {
+            const glow = document.querySelector('.glow-bg');
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            glow.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+        });
+    </script>
+</body>
+</html>
